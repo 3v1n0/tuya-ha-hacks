@@ -144,9 +144,9 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
         # use whatever the device is set to, with a fallback to celsius.
         if all(
             dpcode in device.status
-            for dpcode in (DPCode.TEMP_CURRENT, DPCode.TEMP_CURRENT_F)
+            for dpcode in (DPCode.TEMP_CURRENT, DPCode.TEMP_CURRENT_F, DPCode.UPPER_TEMP)
         ) or all(
-            dpcode in device.status for dpcode in (DPCode.TEMP_SET, DPCode.TEMP_SET_F)
+            dpcode in device.status for dpcode in (DPCode.TEMP_SET, DPCode.TEMP_SET_F, DPCode.UPPER_TEMP)
         ):
             self._attr_temperature_unit = TEMP_CELSIUS
             if any(
@@ -198,7 +198,7 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
         # Determine dpcode to use for getting the current temperature
         if all(
             dpcode in device.status
-            for dpcode in (DPCode.TEMP_CURRENT, DPCode.TEMP_CURRENT_F)
+            for dpcode in (DPCode.TEMP_CURRENT, DPCode.TEMP_CURRENT_F, DPCode.UPPER_TEMP)
         ):
             self._current_temperature_dpcode = DPCode.TEMP_CURRENT
             if self._attr_temperature_unit == TEMP_FAHRENHEIT:
@@ -207,6 +207,8 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
             self._current_temperature_dpcode = DPCode.TEMP_CURRENT
         elif DPCode.TEMP_CURRENT_F in device.status:
             self._current_temperature_dpcode = DPCode.TEMP_CURRENT_F
+        elif DPCode.UPPER_TEMP in device.status:
+            self._current_temperature_dpcode = DPCode.UPPER_TEMP
 
         # If we have a current temperature dpcode, get the integer type data
         if (
