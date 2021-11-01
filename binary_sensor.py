@@ -18,7 +18,6 @@ from homeassistant.components.binary_sensor import (
     BinarySensorEntityDescription,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import ENTITY_CATEGORY_DIAGNOSTIC
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -44,7 +43,6 @@ TAMPER_BINARY_SENSOR = TuyaBinarySensorEntityDescription(
     key=DPCode.TEMPER_ALARM,
     name="Tamper",
     device_class=DEVICE_CLASS_TAMPER,
-    entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
 )
 
 
@@ -123,7 +121,6 @@ BINARY_SENSORS: dict[str, tuple[TuyaBinarySensorEntityDescription, ...]] = {
             key=DPCode.TEMPER_ALARM,
             name="Tamper",
             device_class=DEVICE_CLASS_TAMPER,
-            entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
         ),
         TAMPER_BINARY_SENSOR,
     ),
