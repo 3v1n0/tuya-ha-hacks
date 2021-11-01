@@ -191,8 +191,8 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
             )
             self._attr_supported_features |= SUPPORT_TARGET_TEMPERATURE
             self._set_temperature_type = type_data
-            self._attr_max_temp = type_data.max_scaled
-            self._attr_min_temp = type_data.min_scaled
+            self._attr_max_temp = type_data.max_scaled * 10.0 / 2.0
+            self._attr_min_temp = type_data.min_scaled * 10.0 / 2.0
             self._attr_target_temperature_step = type_data.step_scaled
 
         # Determine dpcode to use for getting the current temperature
@@ -367,9 +367,7 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
             [
                 {
                     "code": self._set_temperature_dpcode,
-                    "value": round(
-                        self._set_temperature_type.scale_value(kwargs["temperature"])
-                    ),
+                    "value": round(float(kwargs["temperature"]) * 2.0),
                 }
             ]
         )
@@ -387,7 +385,7 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
         if temperature is None:
             return None
 
-        return self._current_temperature_type.scale_value(temperature)
+        return self._current_temperature_type.scale_value(temperature) / 2.0
 
     @property
     def current_humidity(self) -> int | None:
@@ -411,7 +409,7 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
         if temperature is None:
             return None
 
-        return self._set_temperature_type.scale_value(temperature)
+        return self._set_temperature_type.scale_value(temperature) * 10 / 2.0
 
     @property
     def target_humidity(self) -> int | None:
