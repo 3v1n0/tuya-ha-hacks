@@ -29,6 +29,10 @@ from . import HomeAssistantTuyaData
 from .base import EnumTypeData, IntegerTypeData, TuyaEntity
 from .const import DOMAIN, TUYA_DISCOVERY_NEW, DPCode
 
+
+# Climate values multiplier (as the actual values are multiplied by the device)
+TUYA_TEMPERATURE_MULTIPLIER = 2.0
+
 # Possible swing state
 SWING_ON = "on"
 SWING_OFF = "off"
@@ -191,8 +195,8 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
             )
             self._attr_supported_features |= SUPPORT_TARGET_TEMPERATURE
             self._set_temperature_type = type_data
-            self._attr_max_temp = type_data.max_scaled * 10.0 / 2.0
-            self._attr_min_temp = type_data.min_scaled * 10.0 / 2.0
+            self._attr_max_temp = type_data.max_scaled * 10.0 / TUYA_TEMPERATURE_MULTIPLIER
+            self._attr_min_temp = type_data.min_scaled * 10.0 / TUYA_TEMPERATURE_MULTIPLIER
             self._attr_target_temperature_step = type_data.step_scaled
 
         # Determine dpcode to use for getting the current temperature
@@ -367,7 +371,7 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
             [
                 {
                     "code": self._set_temperature_dpcode,
-                    "value": round(float(kwargs["temperature"]) * 2.0),
+                    "value": round(float(kwargs["temperature"]) * TUYA_TEMPERATURE_MULTIPLIER),
                 }
             ]
         )
@@ -385,7 +389,7 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
         if temperature is None:
             return None
 
-        return self._current_temperature_type.scale_value(temperature) / 2.0
+        return self._current_temperature_type.scale_value(temperature) / TUYA_TEMPERATURE_MULTIPLIER
 
     @property
     def current_humidity(self) -> int | None:
@@ -409,7 +413,7 @@ class TuyaClimateEntity(TuyaEntity, ClimateEntity):
         if temperature is None:
             return None
 
-        return self._set_temperature_type.scale_value(temperature) * 10 / 2.0
+        return self._set_temperature_type.scale_value(temperature) * 10 / TUYA_TEMPERATURE_MULTIPLIER
 
     @property
     def target_humidity(self) -> int | None:
