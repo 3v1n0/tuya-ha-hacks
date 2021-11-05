@@ -12,6 +12,7 @@ from homeassistant.components.binary_sensor import (
     DEVICE_CLASS_MOTION,
     DEVICE_CLASS_SAFETY,
     DEVICE_CLASS_SMOKE,
+    DEVICE_CLASS_TAMPER,
     DEVICE_CLASS_VIBRATION,
     BinarySensorEntity,
     BinarySensorEntityDescription,
@@ -41,6 +42,7 @@ class TuyaBinarySensorEntityDescription(BinarySensorEntityDescription):
 TAMPER_BINARY_SENSOR = TuyaBinarySensorEntityDescription(
     key=DPCode.TEMPER_ALARM,
     name="Tamper",
+    device_class=DEVICE_CLASS_TAMPER,
 )
 
 
@@ -118,6 +120,7 @@ BINARY_SENSORS: dict[str, tuple[TuyaBinarySensorEntityDescription, ...]] = {
         TuyaBinarySensorEntityDescription(
             key=DPCode.TEMPER_ALARM,
             name="Tamper",
+            device_class=DEVICE_CLASS_TAMPER,
         ),
         TAMPER_BINARY_SENSOR,
     ),
