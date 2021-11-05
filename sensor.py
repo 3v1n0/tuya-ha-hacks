@@ -27,6 +27,7 @@ from homeassistant.const import (
     DEVICE_CLASS_TEMPERATURE,
     DEVICE_CLASS_VOLATILE_ORGANIC_COMPOUNDS,
     DEVICE_CLASS_VOLTAGE,
+    ENTITY_CATEGORY_DIAGNOSTIC,
     PERCENTAGE,
 )
 from homeassistant.core import HomeAssistant, callback
@@ -53,22 +54,26 @@ BATTERY_SENSORS: tuple[SensorEntityDescription, ...] = (
         native_unit_of_measurement=PERCENTAGE,
         device_class=DEVICE_CLASS_BATTERY,
         state_class=STATE_CLASS_MEASUREMENT,
+        entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
     ),
     SensorEntityDescription(
         key=DPCode.BATTERY_STATE,
         name="Battery State",
         icon="mdi:battery",
+        entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
     ),
     SensorEntityDescription(
         key=DPCode.BATTERY_VALUE,
         name="Battery",
         device_class=DEVICE_CLASS_BATTERY,
+        entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
         state_class=STATE_CLASS_MEASUREMENT,
     ),
     SensorEntityDescription(
         key=DPCode.VA_BATTERY,
         name="Battery",
         device_class=DEVICE_CLASS_BATTERY,
+        entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
         state_class=STATE_CLASS_MEASUREMENT,
     ),
 )
@@ -345,6 +350,7 @@ SENSORS: dict[str, tuple[SensorEntityDescription, ...]] = {
             key=DPCode.WIRELESS_ELECTRICITY,
             name="Battery",
             device_class=DEVICE_CLASS_BATTERY,
+            entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
             state_class=STATE_CLASS_MEASUREMENT,
         ),
     ),
@@ -443,6 +449,7 @@ SENSORS: dict[str, tuple[SensorEntityDescription, ...]] = {
             key=DPCode.SMOKE_SENSOR_VALUE,
             name="Smoke Amount",
             icon="mdi:smoke-detector",
+            entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
             device_class=STATE_CLASS_MEASUREMENT,
         ),
         *BATTERY_SENSORS,

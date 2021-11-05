@@ -8,6 +8,7 @@ from tuya_iot.device import TuyaDeviceStatusRange
 
 from homeassistant.components.number import NumberEntity, NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import ENTITY_CATEGORY_CONFIG
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -27,26 +28,31 @@ NUMBERS: dict[str, tuple[NumberEntityDescription, ...]] = {
             key=DPCode.TEMP_SET,
             name="Temperature",
             icon="mdi:thermometer",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.TEMP_SET_F,
             name="Temperature",
             icon="mdi:thermometer",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.TEMP_BOILING_C,
             name="Temperature After Boiling",
             icon="mdi:thermometer",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.TEMP_BOILING_F,
             name="Temperature After Boiling",
             icon="mdi:thermometer",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.WARM_TIME,
             name="Heat Preservation Time",
             icon="mdi:timer",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
     ),
     # Human Presence Sensor
@@ -55,16 +61,19 @@ NUMBERS: dict[str, tuple[NumberEntityDescription, ...]] = {
         NumberEntityDescription(
             key=DPCode.SENSITIVITY,
             name="Sensitivity",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.NEAR_DETECTION,
             name="Near Detection",
             icon="mdi:signal-distance-variant",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.FAR_DETECTION,
             name="Far Detection",
             icon="mdi:signal-distance-variant",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
     ),
     # Coffee maker
@@ -74,20 +83,24 @@ NUMBERS: dict[str, tuple[NumberEntityDescription, ...]] = {
             key=DPCode.WATER_SET,
             name="Water Level",
             icon="mdi:cup-water",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.TEMP_SET,
             name="Temperature",
             icon="mdi:thermometer",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.WARM_TIME,
             name="Heat Preservation Time",
             icon="mdi:timer",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.POWDER_SET,
             name="Powder",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
     ),
     # Siren Alarm
@@ -96,6 +109,7 @@ NUMBERS: dict[str, tuple[NumberEntityDescription, ...]] = {
         NumberEntityDescription(
             key=DPCode.ALARM_TIME,
             name="Time",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
     ),
     # Smart Camera
@@ -105,6 +119,7 @@ NUMBERS: dict[str, tuple[NumberEntityDescription, ...]] = {
             key=DPCode.BASIC_DEVICE_VOLUME,
             name="Volume",
             icon="mdi:volume-high",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
     ),
     # Dimmer Switch
@@ -114,31 +129,37 @@ NUMBERS: dict[str, tuple[NumberEntityDescription, ...]] = {
             key=DPCode.BRIGHTNESS_MIN_1,
             name="Minimum Brightness",
             icon="mdi:lightbulb-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.BRIGHTNESS_MAX_1,
             name="Maximum Brightness",
             icon="mdi:lightbulb-on-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.BRIGHTNESS_MIN_2,
             name="Minimum Brightness 2",
             icon="mdi:lightbulb-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.BRIGHTNESS_MAX_2,
             name="Maximum Brightness 2",
             icon="mdi:lightbulb-on-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.BRIGHTNESS_MIN_3,
             name="Minimum Brightness 3",
             icon="mdi:lightbulb-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.BRIGHTNESS_MAX_3,
             name="Maximum Brightness 3",
             icon="mdi:lightbulb-on-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
     ),
     # Dimmer Switch
@@ -148,21 +169,25 @@ NUMBERS: dict[str, tuple[NumberEntityDescription, ...]] = {
             key=DPCode.BRIGHTNESS_MIN_1,
             name="Minimum Brightness",
             icon="mdi:lightbulb-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.BRIGHTNESS_MAX_1,
             name="Maximum Brightness",
             icon="mdi:lightbulb-on-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.BRIGHTNESS_MIN_2,
             name="Minimum Brightness 2",
             icon="mdi:lightbulb-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
         NumberEntityDescription(
             key=DPCode.BRIGHTNESS_MAX_2,
             name="Maximum Brightness 2",
             icon="mdi:lightbulb-on-outline",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
     ),
     # Vibration Sensor
@@ -171,6 +196,7 @@ NUMBERS: dict[str, tuple[NumberEntityDescription, ...]] = {
         NumberEntityDescription(
             key=DPCode.SENSITIVITY,
             name="Sensitivity",
+            entity_category=ENTITY_CATEGORY_CONFIG,
         ),
     ),
 }
