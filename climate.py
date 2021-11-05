@@ -18,6 +18,11 @@ from homeassistant.components.climate.const import (
     SUPPORT_SWING_MODE,
     SUPPORT_TARGET_HUMIDITY,
     SUPPORT_TARGET_TEMPERATURE,
+    SWING_BOTH,
+    SWING_HORIZONTAL,
+    SWING_OFF,
+    SWING_ON,
+    SWING_VERTICAL,
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
@@ -29,16 +34,8 @@ from . import HomeAssistantTuyaData
 from .base import EnumTypeData, IntegerTypeData, TuyaEntity
 from .const import DOMAIN, TUYA_DISCOVERY_NEW, DPCode
 
-
 # Climate values multiplier (as the actual values are multiplied by the device)
 TUYA_TEMPERATURE_MULTIPLIER = 2.0
-
-# Possible swing state
-SWING_ON = "on"
-SWING_OFF = "off"
-SWING_BOTH = "both"
-SWING_VERTICAL = "vertical"
-SWING_HORIZONTAL = "horizontal"
 
 TUYA_HVAC_TO_HA = {
     "auto": HVAC_MODE_HEAT_COOL,
